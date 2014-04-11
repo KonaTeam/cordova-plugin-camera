@@ -203,6 +203,12 @@ static NSSet* org_apache_cordova_validArrowDirections;
             [viewController.navigationItem setTitle:NSLocalizedString(@"Videos title", nil)];
         }
     }
+    
+    // an apparent bug with UIImagePickerController is setting the style for the status bar back to default which messes up the status
+    // bar once we leave the image picker. this will hide the status bar during selection and keep it the LightContent style for when
+    // we return to the application
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)cleanup:(CDVInvokedUrlCommand*)command
